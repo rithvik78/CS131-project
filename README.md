@@ -2,5 +2,5 @@
 
 ## Requirements
 ```sh
-python3 -m pip install cryptography asn1crypto  Pillow
+python3 -m pip install cryptography asn1crypto  Pillow boto3
 ```
