@@ -13,9 +13,10 @@ cd code
 python3 main.py
 ```
 
-## sample images 
+## Sample Test Cases 
 
 Image: 
+<br>
 ![](https://github.com/rithvik78/CS131-project/blob/main/assets/Image.jpeg?raw=true)
 
 
@@ -26,7 +27,8 @@ Audio:
 
 
 
-Image: 
+Image:                          
+<br>
 ![](https://github.com/rithvik78/CS131-project/blob/main/assets/Image2.png?raw=true)
 
 
