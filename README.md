@@ -23,16 +23,20 @@ Audio:
 [Output](https://github.com/rithvik78/CS131-project/raw/main/assets/test1.mp3)
 
 Image: 
-![](https://github.com/rithvik78/CS131-project/blob/main/assets/Image2.jpeg?raw=true)
+![](https://github.com/rithvik78/CS131-project/blob/main/assets/Image2.png?raw=true)
 
 
 Audio: 
 [Output](https://github.com/rithvik78/CS131-project/raw/main/assets/demo.mp3)
 
 
-You can watch the demo video below:
+You can watch the [demo video](https://drive.google.com/file/d/1hebbEsJbwptsKQxF7HFrAWXE57-ICUw7/view?usp=sharing)
 
-<video width="640" height="480" controls>
-  <source src="https://drive.google.com/file/d/1hebbEsJbwptsKQxF7HFrAWXE57-ICUw7/view?usp=share_link" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+
+### On Fog Device
+
+```sh
+python3 app.py
+```
+head to [http://127.0.0.1:5000][http://127.0.0.1:5000] to access the list of translation that you have requested for. 

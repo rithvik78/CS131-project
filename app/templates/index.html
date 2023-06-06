@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cloud Translation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <style>
+        body {
+            background: #f0f0f0;
+        }
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+        }
+        .description-cell {
+            font-size: 12px;
+        }
+        .image-popup {
+            cursor: pointer;
+            position: relative;
+        }
+        .image-popup::before {
+            content: "";
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+        .image-popup.open::before {
+            display: block;
+        }
+        .image-popup.open img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            z-index: 10000;
+        }
+    </style>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item has-text-white" href="{{ url_for('home') }}">
+                <h2 class="subtitle is-4">Cloud Translation</h2>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-white" href="{{ url_for('home') }}">
+                    Home
+                </a>
+            </div>
+
+            <div class="navbar-end">
+                {% if 'token' in request.cookies %}
+                    <a class="navbar-item has-text-white" href="{{ url_for('logout') }}">
+                        Logout
+                    </a>
+                {% else %}
+                    <a class="navbar-item has-text-white" href="{{ url_for('login') }}">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="table-container">
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Text</th>
+                                    <th>Image</th>
+                                    <th>Translated Audio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <td>{{ item.username }}</td>
+                                    <td class="description-cell">{{ item.description }}</td>
+                                    <td>
+                                        <div class="image-popup" onclick="togglePopup(this)">
+                                            <figure class="image is-128x128">
+                                                <img src="{{ url_for('image', filename=item.image_s3_key) }}" alt="Image">
+                                            </figure>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <audio controls>
+                                            <source src="{{ url_for('audio', filename=item.audio_s3_key) }}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function togglePopup(element) {
+            element.classList.toggle('open');
+        }
+
+        window.addEventListener('resize', function() {
+            console.log(`The window was resized to ${window.innerWidth}px by ${window.innerHeight}px.`);
+        });
+    </script>
+</body>
+
+</html>

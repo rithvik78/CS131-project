@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <style>
+        body {
+            background: #f0f0f0;
+        }
+        .form-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item has-text-white" href="{{ url_for('home') }}">
+                <h2 class="subtitle is-4">Cloud Translation</h2>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-white" href="{{ url_for('home') }}">
+                    Home
+                </a>
+            </div>
+
+            <div class="navbar-end">
+                {% if 'token' in request.cookies %}
+                    <a class="navbar-item has-text-white" href="{{ url_for('logout') }}">
+                        Logout
+                    </a>
+                {% else %}
+                    <a class="navbar-item has-text-white" href="{{ url_for('login') }}">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="form-container">
+                        <div class="title">
+                            <h2 class="subtitle is-2">Login</h2>
+                        </div>
+                        {% if error %}
+                            <div class="notification is-danger">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                        <form action="/login" method="post">
+                            <div class="field">
+                                <label class="label" for="username">Username</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="username" name="username" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="password">Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" id="password" name="password" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="button is-primary" type="submit" value="Login">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('resize', function() {
+            console.log(`The window was resized to ${window.innerWidth}px by ${window.innerHeight}px.`);
+        });
+    </script>
+</body>
+
+</html>
