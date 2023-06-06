@@ -22,6 +22,10 @@ Image:
 Audio: 
 [Output](https://github.com/rithvik78/CS131-project/raw/main/assets/test1.mp3)
 
+
+
+
+
 Image: 
 ![](https://github.com/rithvik78/CS131-project/blob/main/assets/Image2.png?raw=true)
 
@@ -39,4 +43,4 @@ You can watch the [demo video](https://drive.google.com/file/d/1hebbEsJbwptsKQxF
 ```sh
 python3 app.py
 ```
-head to [http://127.0.0.1:5000][http://127.0.0.1:5000] to access the list of translation that you have requested for. 
+head to [http://127.0.0.1:5000](http://127.0.0.1:5000) to access the list of translation that you have requested for. 
